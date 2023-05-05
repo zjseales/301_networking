@@ -1,0 +1,60 @@
+1. List briefly the advantages and disadvantages of using sudo as set up on Ubuntu, and
+of leaving the root account disabled. Ensure you understand what is being said in the
+documentation.
+
+Answer: 
+	sudo provides root access to anyone who has been given privilege to use 
+	the command. Users with privilige are defined as 'sudoers' and must provide
+	a password when using the sudo command.
+
+The benefits of sudo is the security it provides, as well as the extra users with root 
+privileges. This can be useful for development teams.
+It also logs access, so anyone who gets root access can be tracked.
+
+Logging in as root is not possible, sudo will instead give administrative access to 
+the user that is initialized at install.
+
+BENEFITS OF USING SUDO
+       The benefits of leaving root disabled by default include the following:
+
+       * Users  do  not  have  to  remember  an extra password, which they are
+         likely to forget.
+
+       * The installer is able to ask fewer questions.
+
+       * It avoids the "I can do anything" interactive login by default -  you
+         will  be  prompted  for  a  password before major changes can happen,
+         which should make you think about the consequences of  what  you  are
+         doing.
+
+       * Sudo adds a log entry of the command(s) run (in /var/log/auth.log).
+
+       * Every  attacker  trying  to  brute-force their way into your box will
+         know it has an account named root and will try that first. What  they
+         do not know is what the usernames of your other users are.
+
+       * Allows  easy  transfer for admin rights, in a short term or long term
+         period, by adding and removing users from the sudo group,  while  not
+         compromising the root account.
+
+       * sudo can be set up with a much more fine-grained security policy.
+
+       * On systems with more than one administrator using sudo avoids sharing
+         a password amongst them.
+
+
+
+DOWNSIDES OF SUDO:
+	Using cd while using sudo will not work.
+
+	Redirecting output must use pipes
+DO: ls | sudo tee /root/somefile
+	to ls a root file
+NOT: sudo ls > /root/somefile
+
+	If a system has 1 local root user only, and many imported network users,
+	then that one user is responsible for everything if network fails.
+	Extra local users, or a root password is necessary, in this scenario. 
+	
+-----
+
